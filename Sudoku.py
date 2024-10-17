@@ -396,6 +396,8 @@ def check_user_ans(timer_event):
         screen.blit(Result_text, (720 - 170, 200))
         print('Incorrect')
     
+    #update screen
+    pygame.display.update()
     # Set a timer for 5 seconds based on USEREVENT + 2(new event)
     pygame.time.set_timer(pygame.USEREVENT + 2, 5000)
     while True:
