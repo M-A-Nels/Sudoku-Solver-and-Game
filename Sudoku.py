@@ -321,10 +321,11 @@ def Random_Puzzle():
     global user_grid
     global copy_grid
     global current_grid
+    global solved_grid
     current_grid = random.choice(sudoku_puzzles)
     user_grid = copy.deepcopy(current_grid)
     copy_grid = copy.deepcopy(current_grid)
-    solved_grid = copy.deepcopy(current_grid)
+    solve_sudoku(current_grid)
     draw_grid()
 
     
