@@ -28,6 +28,8 @@ y = -1
 
 #set up empty value
 empty_value = 0
+#if puzzle is shown
+shown = False
 
 #set up empty grid
 empty_grid = [[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],
@@ -60,6 +62,7 @@ def main():
     #set global variables
     global current_grid
     global user_grid
+    global shown
     
     #solve puzzle
     solve_sudoku(current_grid)
@@ -123,6 +126,7 @@ def main():
                 pos = pygame.mouse.get_pos()
                 #check if button clicked
                 if RandomPuzzle_button.collidepoint(pos):
+                    shown = False
                     Random_Puzzle()
                     seconds = 0
                     minutes = 0
@@ -135,10 +139,11 @@ def main():
                 elif solve_button.collidepoint(pos):
                     solve_puzzle(timer_event)
                 else:
-                    #if not button clicked, ensure timer is running
-                    start(timer_event)
-                    #change values
-                    change_values()
+                    if not shown:
+                        #if not button clicked, ensure timer is running
+                        start(timer_event)
+                        #change values
+                        change_values()
                 #update screen
                 pygame.display.update()
                 
@@ -220,6 +225,8 @@ def draw_lines():
 
 #function to draw solved grid
 def draw_solved_grid():
+    global shown
+    shown = True
     #loop through grid
     for i in range (9):
         for j in range(9):
@@ -379,6 +386,8 @@ def Random_Puzzle():
 #function to check user answer
 def check_user_ans(timer_event):
     print('Check')
+    if shown:
+        return
     #reset font
     font = pygame.font.SysFont('Consolas', 15)
     #check if same as solved grid
@@ -398,6 +407,9 @@ def check_user_ans(timer_event):
     
     #update screen
     pygame.display.update()
+    #stop timer
+    pygame.time.set_timer(timer_event, 0)
+    
     # Set a timer for 5 seconds based on USEREVENT + 2(new event)
     pygame.time.set_timer(pygame.USEREVENT + 2, 5000)
     while True:
@@ -409,8 +421,8 @@ def check_user_ans(timer_event):
             break
     #update screen
     pygame.display.update()
-    #stop timer
-    pygame.time.set_timer(timer_event, 0)
+    #start timer
+    start(timer_event)
     return
 
 #function to solve puzzle
