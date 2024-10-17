@@ -384,7 +384,6 @@ def Random_Puzzle():
 
 #function to check user answer
 def check_user_ans(timer_event):
-    print('Check')
     if shown:
         return
     #reset font
@@ -395,14 +394,12 @@ def check_user_ans(timer_event):
         #text display
         Result_text = font.render('Result: Correct', True, (255, 255, 255))
         screen.blit(Result_text, (720 - 170, 180))
-        print('Correct')
     else: 
         #if incorrect, display incorrect
         Result_text = font.render('Result: Incorrect', True, (255, 255, 255))
         screen.blit(Result_text, (720 - 170, 180))
         Result_text = font.render('Continue Working', True, (255, 255, 255))
         screen.blit(Result_text, (720 - 170, 200))
-        print('Incorrect')
     
     #update screen
     pygame.display.update()
@@ -425,8 +422,7 @@ def check_user_ans(timer_event):
     return
 
 #function to solve puzzle
-def solve_puzzle(timer_event):  
-    print('Solve')
+def solve_puzzle(timer_event):
     #draw solved grid
     draw_solved_grid()
     #update screen
@@ -437,7 +433,6 @@ def solve_puzzle(timer_event):
 
 #function to start timer
 def start(timer_event):
-    print('Start')
     #start timer
     pygame.time.set_timer(timer_event,1000)
     return    
