@@ -132,6 +132,7 @@ def main():
                     minutes = 0
                     time_text = timer_font.render(f'Time: {minutes:02}:{seconds:02} ', True, (0,255,0))
                     draw_timer(time_text)
+                    start(timer_event)
                 #check if button clicked
                 elif check_button.collidepoint(pos):
                     check_user_ans(timer_event)
@@ -140,8 +141,6 @@ def main():
                     solve_puzzle(timer_event)
                 else:
                     if not shown:
-                        #if not button clicked, ensure timer is running
-                        start(timer_event)
                         #change values
                         change_values()
                 #update screen
